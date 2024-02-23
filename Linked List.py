@@ -1,14 +1,17 @@
 class Node:
-    def __init__(self, data = None, next = None):
+    def __init__(self, data=None, next=None):
         self.data = data
         self.next = next
+
 
 class LinkedList:
     def __init__(self):
         self.head = None
-    def insert_at_begining(self, data):
+
+    def insert_at_beginning(self, data):
         node = Node(data, self.head)
         self.head = node
+
     def print(self):
         if self.head is None:
             print("Linked list is empty")
@@ -21,7 +24,8 @@ class LinkedList:
             itr = itr.next
 
         print(llstr)
-    def insert_at_end(self,data):
+
+    def insert_at_end(self, data):
         if self.head is None:
             self.head = Node(data, None)
             return
@@ -43,7 +47,6 @@ class LinkedList:
             itr = itr.next
         node = Node(data_to_insert, itr.next)
 
-
     def get_length(self):
         count = 0
         itr = self.head
@@ -53,7 +56,7 @@ class LinkedList:
         return count
 
     def remove_at(self, index):
-        if index < 0 or index>=self.get_length():
+        if index < 0 or index >= self.get_length():
             raise Exception("Invalid Index")
 
         if index == 0:
@@ -90,15 +93,14 @@ class LinkedList:
 
 if __name__ == "__main__":
     ll = LinkedList()
-    ll.insert_at_begining(5)
-    ll.insert_at_begining((89))
+    ll.insert_at_beginning(5)
+    ll.insert_at_beginning((89))
     ll.insert_at_end(79)
+    ll.insert_values([234, 15])
     ll.print()
+
     ll1 = LinkedList()
-    ll1.insert_values(["banana","mango","grape","orange"])
-    ll1.print()
+    ll1.insert_values(["banana", "mango", "grape", "orange"])
     print("length is: " + str(ll1.get_length()))
     ll1.remove_at(1)
-    ll1.insert_at(2,"apple")
-    ll1.print()
-
+    ll1.insert_at(2, "apple")
