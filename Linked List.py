@@ -40,12 +40,22 @@ class LinkedList:
             self.insert_at_end(data)
 
     def insert_after_value(self, data_after, data_to_insert):
+
+        if self.head is None:
+            return
+
+        if self.head.data == data_after:
+            self.head.next = Node(data_to_insert, self.head.next) #两种写法
+            return
+
         itr = self.head
-        while itr.next:
+        while itr:
             if itr.data == data_after:
-                return itr.next
-            itr = itr.next
-        node = Node(data_to_insert, itr.next)
+                break
+            else:
+                itr = itr.next
+        node = Node(data_to_insert, itr.next) #两种写法
+        itr.next = node
 
     def get_length(self):
         count = 0
@@ -73,11 +83,37 @@ class LinkedList:
             itr = itr.next
             count += 1
 
+    def remove_by_value(self, data):
+
+        if self.head is None:
+            return
+
+        value_found = False
+
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
+        itr = self.head
+        while itr:
+            if itr.next.data == data:
+                value_found = True
+                break
+            else:
+                itr = itr.next
+
+        if value_found:
+            itr.next = itr.next.next
+        else:
+            raise Exception("Invalid Value!")
+
+
+
     def insert_at(self, index, data):
         if index < 0 or index > self.get_length():
             raise Exception("Invalid Index")
         if index == 0:
-            self.insert_at_begining(data)
+            self.insert_at_beginning(data)
             return
         count = 0
         itr = self.head
@@ -93,14 +129,16 @@ class LinkedList:
 
 if __name__ == "__main__":
     ll = LinkedList()
-    ll.insert_at_beginning(5)
-    ll.insert_at_beginning((89))
-    ll.insert_at_end(79)
-    ll.insert_values([234, 15])
+    ll.insert_values(["banana", "mango", "grapes", "orange"])
     ll.print()
-
-    ll1 = LinkedList()
-    ll1.insert_values(["banana", "mango", "grape", "orange"])
-    print("length is: " + str(ll1.get_length()))
-    ll1.remove_at(1)
-    ll1.insert_at(2, "apple")
+    ll.insert_after_value("mango", "apple")  # insert apple after mango
+    ll.print()
+    ll.remove_by_value("orange")  # remove orange from linked list
+    ll.print()
+    ll.remove_by_value("figs") #正常报错
+    ll.print()
+    ll.remove_by_value("banana")
+    ll.remove_by_value("mango")
+    ll.remove_by_value("apple")
+    ll.remove_by_value("grapes")
+    ll.print()
