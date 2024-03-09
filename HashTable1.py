@@ -24,4 +24,6 @@ for i in range(1,11):
 print("maximum temperature in first 10 days in January is: " + str(max_temp) + " and it's on: " + str(key + day) + '\n')
 
 print("temperature on Jan 9 is: " + str(dic['Jan 9']))
-print("temperature on Jan 4 is: " + str(dic['Jan 4']))
+print("temperature on Jan 4 is: " + str(dic['Jan 4']) + "\n")
+
+
