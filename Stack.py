@@ -16,9 +16,10 @@ class Stack:
     def is_empty(self):
         return len(self.container) == 0
 
-s = Stack()
+
 
 def reverse_string(string):
+    s = Stack()
     new_string = ""
     for c in string:
         s.push(c);
@@ -27,3 +28,6 @@ def reverse_string(string):
     return new_string
 
 print(reverse_string("We will conquere COVID-19"))
+
+def is_balenced(string):
+    stack = Stack()
