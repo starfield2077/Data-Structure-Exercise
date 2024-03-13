@@ -31,17 +31,14 @@ def reverse_string(string):
     return new_string
 
 
-print(reverse_string("We will conquere COVID-19"))
+if __name__ == "main":
+    print(reverse_string("We will conquere COVID-19"))
 
 
 def is_balanced(string):
     s = Stack()
     for c in string:
-        if c == '(':
-            s.push(c)
-        elif c == '[':
-            s.push(c)
-        elif c == '{':
+        if c == '(' or c == '{' or c == '[':
             s.push(c)
         elif c == ')':
             if not s.is_empty() and s.peek() == '(':
