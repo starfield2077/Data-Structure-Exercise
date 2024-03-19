@@ -8,8 +8,10 @@ class TreeNode:
         child.parent = self
         self.children.append(child)
 
-    def print_tree(self, num):
-        idx = num
+    def print_tree(self, level):
+        # level constrains
+        if self.get_level() > level:
+            return
 
         if self.parent:
             prefix = '  ' * self.get_level() + "|__"
@@ -17,9 +19,10 @@ class TreeNode:
             prefix = ''
 
         print(prefix + self.data)
-        if len(self.children) > 0:
+        if self.children:
             for child in self.children:
-                child.print_tree()
+                child.print_tree(level)
+
 
     def get_level(self):
         level = 0
@@ -74,4 +77,4 @@ def build_location_tree():
 
 if __name__ == '__main__':
     root = build_location_tree()
-    root.print_tree()
+    root.print_tree(2)
